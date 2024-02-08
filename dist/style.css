@@ -2,6 +2,9 @@
     --primary-color: #acacff;
     --font-color: #50514F;
 }
+html, body {
+    height: 100%;
+}
 
 * {
     margin: 0;
@@ -10,9 +13,10 @@
     box-sizing: border-box;
 }
 
-body {
-    height: 100vh;
+button {
+    cursor: pointer;
 }
+
 
 #header {
     background-color: var(--primary-color);
@@ -25,7 +29,7 @@ body {
 #container {
 
     display: flex;
-
+    height: 100%;
 }
 
 #nav-bar {
@@ -33,7 +37,7 @@ body {
     flex-direction: column;
     background-color: ghostwhite;
     padding: 32px;
-    height: 100vh;
+    height: 100%;
     color: black;
 
     li {
@@ -47,7 +51,10 @@ body {
     li:hover {
         background-color: white;
         border-radius: 8px;
+        cursor: pointer;
     }
+
+
 }
 
 a {
@@ -76,4 +83,137 @@ a {
     text-align: center;
     font-weight: 700;
     font-size: 16px;
+}
+
+
+/*modal form*/
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+
+    /*this properties will make the form to be at the center of the screen*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* scale will make the form disappear*/
+    transition: 200ms ease-in-out;
+
+    box-shadow: rgba(0, 0, 0, 0.3) 0 0 8px;
+    border-radius: 8px;
+
+    z-index: 10;
+    background-color: white;
+    width: 400px;
+    max-width: 50%;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.add-project-form-header, .add-todo-form-header {
+
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.add-project-form-header h2, .add-todo-form-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.add-project-form-header button, .add-todo-form-header button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+    background: none;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.add-project-form-body, .add-todo-form-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.add-project-form-body input, .add-todo-form-body input, .add-todo-form-body select {
+    padding-inline-start: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 1.125rem;
+    border-radius: 8px;
+    border: calc(2px / 10) solid rgba(0, 0, 0, 0.3);
+}
+
+.add-todo-form-body input{
+    margin-bottom: 10px;
+    padding-inline-end: 18px;
+    padding-inline-start: 18px;
+}
+.add-todo-form-body select {
+    padding-inline-end: 30px;
+    line-height: 1.2;
+}
+
+.add-project-form-body input:focus, .add-todo-form-body input:focus, .add-todo-form-body select:focus {
+    outline: none;
+    border: calc(8px / 10) solid rgba(0, 0, 0, 0.5);
+}
+
+.add-project-form-body label, .add-todo-form-body label{
+    font-size: 1.125rem;
+    margin-bottom: 8px;
+}
+
+.add-project-form-footer {
+
+    margin-top: 16px;
+    margin-left: auto;
+
+}
+
+.add-project-form-footer button {
+    font-size: 1.25rem;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+/*adding to-do*/
+
+.add-todo {
+    width: 100%;
+}
+
+
+
+
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+
+    /*this fills the screen*/
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
 }
