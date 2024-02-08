@@ -1,4 +1,4 @@
-
+import project from "./project";
 function todo() {
 
     class Todo {
@@ -12,11 +12,24 @@ function todo() {
         }
     }
 
-    function addTodo(taskIndex, title, description, priority, schedule, index) {
+    function addTodo(title, description, priority, schedule, projectTitle) {
+
 
         const newTodo = new Todo(title, description, priority, schedule);
 
 
+        // find index of projectTitle
+
+        let j = 0;
+        for (let proj of project.projectList) {
+            if (proj.title === projectTitle) {
+                break;
+            }
+            j++;
+        }
+
+        project.projectList[j].todo.push(newTodo);
+        console.log(project.projectList);
         return addTodo;
 
     }
@@ -38,4 +51,4 @@ function todo() {
 
 }
 
-export default todo;
+export default todo();

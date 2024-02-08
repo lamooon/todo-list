@@ -12,11 +12,10 @@ function dom() {
     const overlay = document.getElementById('overlay');
     const projectsSidebar = document.getElementById('project-content-list');
     const projectForm = document.getElementById('project-form');
-    const projectSidebar = document.querySelectorAll('.projects-sidebar')
+    const projectNames = document.querySelectorAll('.project-name')
     const confirmAddProjectButton = document.querySelector('.add-project-button');
-    const confirmAddTodoButton = document.querySelector('.add-todo-button');
-
-
+    const confirmAddTodoButton = document.querySelector('.add-task-button');
+    const todoForm = document.getElementById('todo-form');
 
 
     addNewTodoBtn.addEventListener('click', () => {
@@ -24,6 +23,30 @@ function dom() {
         const heading = modal.querySelector("h2");
         heading.textContent = 'New Task';
         openModal(modal);
+        projects.listProjects();
+    });
+
+    confirmAddTodoButton.addEventListener('click', (e) => {
+
+        e.preventDefault();
+        const modal = document.querySelector(addNewTodoBtn.dataset.modalTarget);
+
+        const todoTitle = document.getElementById('todo-title').value;
+        const description = document.getElementById('todo-description').value;
+
+        const dueDate = document.getElementById('due-date').value;
+        const priority = document.getElementById('todo-priority');
+        const selectedPriority = priority.options[priority.selectedIndex].text;
+
+        console.log(selectedPriority);
+
+        const partOfWhichProject = document.getElementById('todo-project');
+        const whichProject = partOfWhichProject.options[partOfWhichProject.selectedIndex].text;
+
+        todo.addTodo(todoTitle, description, selectedPriority, dueDate, whichProject);
+
+        todoForm.reset();
+        closeModal(modal);
     })
 
     addProjectBtn.addEventListener('click', () => {
@@ -38,14 +61,14 @@ function dom() {
 
 
 
-    confirmAddProjectButton.addEventListener('click', () => {
+    confirmAddProjectButton.addEventListener('click', (e) => {
+        e.preventDefault();
         const modal = document.querySelector(addProjectBtn.dataset.modalTarget);
         const projectLink = document.createElement('a');
         const projectContainer = document.createElement('li');
         const projectName = document.createElement('span');
 
         const projectTitle = document.getElementById('project-title').value;
-        console.log(projectTitle);
         projects.createProjects(projectTitle);
 
         projectName.textContent = projectTitle;
@@ -95,11 +118,10 @@ function dom() {
         })
     })
 
-    projectSidebar.forEach((category) => {
+    projectNames.forEach((category) => {
         category.addEventListener('click', () => {
-            const name = category.querySelector('.project-name');
-            console.log(name);
-            categoryName.innerHTML = name.textContent;
+            console.log("I have been clicked")
+            categoryName.innerHTML = category.textContent;
 
             //     should add what tasks fall under this category
         })

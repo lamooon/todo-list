@@ -1,5 +1,3 @@
-import dom from "./dom";
-
 // CRUD Principle
 function projects() {
 
@@ -16,14 +14,18 @@ function projects() {
     function createProjects(title) {
         const newProject = new Project(title);
         projectList.push(newProject);
-        console.log(projectList);
         localStorage.setItem('project', JSON.stringify(projectList));
     }
 
     function listProjects() {
 
-
+        const connectTaskToProject = document.getElementById('todo-project');
+        connectTaskToProject.replaceChildren();
         for (let i = 0; i < projectList.length; i++) {
+            const title = document.createElement('option');
+            const projectTitle = projectList[i].title;
+            title.textContent = projectTitle;
+            connectTaskToProject.appendChild(title);
 
         }
     }
@@ -32,10 +34,15 @@ function projects() {
 
     }
 
+    function removeProjects() {
+
+    }
     return {
         createProjects,
         listProjects,
-        updateProjects
+        updateProjects,
+        removeProjects,
+        projectList
     }
 }
 
