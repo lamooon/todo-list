@@ -30,7 +30,14 @@ function projects() {
         }
     }
 
-    function updateProjects() {
+    function updateProjects(originalName, newName) {
+
+        for (let proj of projectList) {
+            if (originalName === proj.title) {
+                proj.title = newName;
+                break;
+            }
+        }
 
     }
 

@@ -54,7 +54,7 @@ function todo() {
                     const done = document.createElement('input');
                     done.type = 'checkbox';
                     done.classList.add('done-todo-check');
-                    done.id = 'detail-' + todoLayout[i].title + '-' + todoLayout[i].projectTitle;
+                    done.id = 'done-' + todoLayout[i].title + '-' + todoLayout[i].projectTitle;
                     todoContainer.appendChild(done);
 
                     const title = document.createElement('p');
@@ -67,9 +67,14 @@ function todo() {
                     details.id = 'detail-' + todoLayout[i].title + '-' + todoLayout[i].projectTitle;
                     const deadline = document.createElement('p');
                     const editButton = document.createElement('btn');
+                    editButton.id = 'edit-' + todoLayout[i].title + '-' + todoLayout[i].projectTitle;
                     const deleteButton = document.createElement('btn');
+                    deleteButton.id = 'delete-' + todoLayout[i].title + '-' + todoLayout[i].projectTitle;
 
                     title.innerHTML = todoLayout[i].title;
+
+
+
                     editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
                     deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
                     editButton.classList.add('edit-todo');
