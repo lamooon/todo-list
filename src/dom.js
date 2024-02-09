@@ -11,12 +11,13 @@ function dom() {
     const closeModalBtn = document.querySelectorAll('[data-close-button]');
     const overlay = document.getElementById('overlay');
     const projectsSidebar = document.getElementById('project-content-list');
+    let projectSidebar = document.querySelectorAll('.project-name');
     const projectForm = document.getElementById('project-form');
-    const projectNames = document.querySelectorAll('.project-name')
     const confirmAddProjectButton = document.querySelector('.add-project-button');
     const confirmAddTodoButton = document.querySelector('.add-task-button');
     const todoForm = document.getElementById('todo-form');
 
+    const tasksList = document.querySelector('.tasks-list');
 
     addNewTodoBtn.addEventListener('click', () => {
         const modal = document.querySelector(addNewTodoBtn.dataset.modalTarget);
@@ -30,23 +31,22 @@ function dom() {
 
         e.preventDefault();
         const modal = document.querySelector(addNewTodoBtn.dataset.modalTarget);
-
         const todoTitle = document.getElementById('todo-title').value;
         const description = document.getElementById('todo-description').value;
-
         const dueDate = document.getElementById('due-date').value;
         const priority = document.getElementById('todo-priority');
         const selectedPriority = priority.options[priority.selectedIndex].text;
-
-        console.log(selectedPriority);
-
         const partOfWhichProject = document.getElementById('todo-project');
         const whichProject = partOfWhichProject.options[partOfWhichProject.selectedIndex].text;
 
         todo.addTodo(todoTitle, description, selectedPriority, dueDate, whichProject);
 
-        todoForm.reset();
+
+
+        todo.listTodo(whichProject);
+
         closeModal(modal);
+
     })
 
     addProjectBtn.addEventListener('click', () => {
@@ -56,10 +56,7 @@ function dom() {
         heading.textContent = 'New Project';
         openModal(modal);
 
-
     })
-
-
 
     confirmAddProjectButton.addEventListener('click', (e) => {
         e.preventDefault();
@@ -67,18 +64,32 @@ function dom() {
         const projectLink = document.createElement('a');
         const projectContainer = document.createElement('li');
         const projectName = document.createElement('span');
-
+        const editButton = document.createElement('btn');
+        const deleteButton = document.createElement('btn');
         const projectTitle = document.getElementById('project-title').value;
+        const buttonContainer = document.createElement('div');
         projects.createProjects(projectTitle);
 
         projectName.textContent = projectTitle;
+
+        editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+        deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+        editButton.classList.add('edit-project');
+        deleteButton.classList.add('delete-project');
+
+        projectContainer.id = "proj-" + projectTitle;
         projectName.classList.add('project-name');
         projectLink.appendChild(projectName);
+        projectLink.href = '#';
+        projectLink.classList.add('project-link');
         projectContainer.appendChild(projectLink);
+        buttonContainer.classList.add('edit-delete');
+        buttonContainer.appendChild(editButton);
+        buttonContainer.appendChild(deleteButton);
+        projectContainer.appendChild(buttonContainer);
         projectContainer.classList.add('projects-sidebar');
         projectsSidebar.appendChild(projectContainer);
 
-        projectForm.reset();
         closeModal(modal);
     });
 
@@ -106,9 +117,11 @@ function dom() {
         if (modal == null) return;
         modal.classList.remove('active');
         overlay.classList.remove('active');
+        projectForm.reset();
+        todoForm.reset();
+        projectSidebar = document.querySelectorAll('.project-name');
+
     }
-
-
 
     sidebar.forEach((category) => {
         category.addEventListener('click', () => {
@@ -118,17 +131,30 @@ function dom() {
         })
     })
 
-    projectNames.forEach((category) => {
-        category.addEventListener('click', () => {
-            console.log("I have been clicked")
-            categoryName.innerHTML = category.textContent;
+    // used to capture clicks on dynamically created elements
+    projectsSidebar.addEventListener('click', function(e) {
+        const target = e.target.closest('.projects-sidebar');
 
-            //     should add what tasks fall under this category
-        })
+        const name = target.id.split("-");
+        categoryName.innerHTML = name[1].charAt(0).toUpperCase() + name[1].slice(1);
+        todo.listTodo(name[1]);
+    })
+
+    tasksList.addEventListener('click', function(e) {
+
+        const target = e.target.closest('.todo-details');
+        const name = target.id.split("-");
+        const modal = document.querySelector(target.dataset.modalTarget);
+        const heading = modal.querySelector("h2");
+        heading.textContent = name[1].charAt(0).toUpperCase() + name[1].slice(1);;
+        todo.searchDetails(name[1], name[2]);
+        openModal(modal);
     })
 
 
+    return {
 
+    }
 }
 
 export default dom;

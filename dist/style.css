@@ -4,6 +4,7 @@
 }
 html, body {
     height: 100%;
+    flex-wrap: wrap;
 }
 
 * {
@@ -17,6 +18,9 @@ button {
     cursor: pointer;
 }
 
+ul {
+    width: 100%;
+}
 
 #header {
     background-color: var(--primary-color);
@@ -39,12 +43,11 @@ button {
     padding: 32px;
     height: 100%;
     color: black;
-
+    max-width: 25%;
     li {
         list-style: none;
         font-size: 18px;
         font-weight: 400;
-        margin-bottom: 20px;
         padding: 8px;
     }
 
@@ -112,7 +115,7 @@ a {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.add-project-form-header, .add-todo-form-header {
+.add-project-form-header, .add-todo-form-header, .add-description-form-header {
 
     padding: 15px;
     display: flex;
@@ -121,12 +124,12 @@ a {
     border-bottom: 1px solid black;
 }
 
-.add-project-form-header h2, .add-todo-form-header h2 {
+.add-project-form-header h2, .add-todo-form-header h2, .add-description-form-header h2 {
     font-size: 1.5rem;
     font-weight: 700;
 }
 
-.add-project-form-header button, .add-todo-form-header button {
+.add-project-form-header button, .add-todo-form-header button, .add-description-form-header button {
     cursor: pointer;
     border: none;
     outline: none;
@@ -136,7 +139,7 @@ a {
     font-weight: 700;
 }
 
-.add-project-form-body, .add-todo-form-body {
+.add-project-form-body, .add-todo-form-body, .add-description-form-body {
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -222,4 +225,77 @@ textarea {
 #overlay.active {
     opacity: 1;
     pointer-events: all;
+}
+
+
+
+.edit-delete {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.edit-project, .delete-project, .edit-todo, .delete-todo {
+    padding: 3px;
+
+}
+
+.edit-project:hover, .delete-project:hover {
+    background-color: var(--primary-color);
+    border: 1px solid white;
+}
+
+.projects-sidebar {
+    display: flex;
+    align-items: center;
+}
+
+.todo-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    padding: 12px;
+    padding-inline-start: 20px;
+
+}
+
+.category-name, .add-todo-btn {
+    margin: 50px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.add-todo-btn {
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.add-todo-btn:hover {
+    background-color: darkgrey;
+}
+.tasks-list {
+    margin: 50px 30px;
+    padding: 15px;
+}
+
+.todo-container, .todo-sub-container {
+    display: flex;
+    align-items: center;
+}
+
+.todo-sub-container {
+    margin-left: auto;
+}
+
+.details-desc {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 10px;
+
+    span {
+        font-weight: 700;
+        font-size: 1.125rem;
+        min-width: 100px;
+    }
 }

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&amp;display=swap">
+    <script src="https://kit.fontawesome.com/6a95e62202.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -55,11 +56,11 @@
         </div>
 
         <div id="task-content">
-            <h2 class="category-name">
+            <div class="category-name">
 
-            </h2>
+            </div>
             <div class="tasks-list">
-                Test
+                Put the todo list here...
             </div>
 
             <div class="add-todo">
@@ -138,6 +139,18 @@
                 </div>
             </div>
         </form>
+    </div>
+
+    <div class="modal" id="description-modal">
+
+        <div class="add-description-form-header">
+            <h2 class="modal-header"><!-- Will be generated using JS--></h2>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="add-description-form-body">
+            <!--implemented using JS-->
+        </div>
+
     </div>
 
     <div id="overlay"></div>
