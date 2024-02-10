@@ -14,7 +14,7 @@ html, body {
     box-sizing: border-box;
 }
 
-button {
+button, i {
     cursor: pointer;
 }
 
@@ -115,7 +115,7 @@ a {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.add-project-form-header, .add-todo-form-header, .add-description-form-header {
+.add-project-form-header, .add-todo-form-header, .add-description-form-header, .update-todo-form-header {
 
     padding: 15px;
     display: flex;
@@ -124,12 +124,12 @@ a {
     border-bottom: 1px solid black;
 }
 
-.add-project-form-header h2, .add-todo-form-header h2, .add-description-form-header h2 {
+.add-project-form-header h2, .add-todo-form-header h2, .add-description-form-header h2, .update-todo-form-header h2{
     font-size: 1.5rem;
     font-weight: 700;
 }
 
-.add-project-form-header button, .add-todo-form-header button, .add-description-form-header button {
+.add-project-form-header button, .add-todo-form-header button, .add-description-form-header button, .update-todo-form-header button {
     cursor: pointer;
     border: none;
     outline: none;
@@ -139,14 +139,14 @@ a {
     font-weight: 700;
 }
 
-.add-project-form-body, .add-todo-form-body, .add-description-form-body {
+.add-project-form-body, .add-todo-form-body, .add-description-form-body, .update-todo-form-body {
     padding: 15px;
     display: flex;
     flex-direction: column;
 
 }
 
-.add-project-form-body input, .add-todo-form-body input, .add-todo-form-body select, .add-todo-form-body textarea{
+.add-project-form-body input, .add-todo-form-body input, .add-todo-form-body select, .add-todo-form-body textarea, .update-todo-form-body select, .update-todo-form-body input{
     padding-inline-start: 12px;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -155,7 +155,7 @@ a {
     border: calc(2px / 10) solid rgba(0, 0, 0, 0.3);
 }
 
-.add-todo-form-body input .add-todo-form-body textarea{
+.add-todo-form-body input .add-todo-form-body textarea, .update-todo-form-body input, .update-todo-form-body textarea{
     margin-bottom: 10px;
     padding-inline-end: 18px;
     padding-inline-start: 18px;
@@ -165,25 +165,25 @@ a {
     line-height: 1.2;
 }
 
-.add-project-form-body input:focus, .add-todo-form-body input:focus, .add-todo-form-body select:focus, .add-todo-form-body textarea:focus{
+.add-project-form-body input:focus, .add-todo-form-body input:focus, .add-todo-form-body select:focus, .add-todo-form-body textarea:focus, .update-todo-form-body input:focus, .update-todo-form-body textarea:focus, .update-todo-form-body select:focus{
     outline: none;
     border: calc(8px / 10) solid rgba(0, 0, 0, 0.5);
 }
 
-.add-project-form-body label, .add-todo-form-body label{
+.add-project-form-body label, .add-todo-form-body label, .update-todo-form-body label{
     font-size: 1.125rem;
     margin-bottom: 8px;
     margin-top: 10px;
 }
 
-.add-project-form-footer {
+.add-project-form-footer, .update-project-form-footer {
 
     margin-top: 16px;
     margin-left: auto;
 
 }
 
-.add-project-form-footer button {
+.add-project-form-footer button, .update-project-form-footer button {
     font-size: 1.25rem;
     background-color: var(--primary-color);
     color: white;

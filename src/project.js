@@ -17,18 +17,7 @@ function projects() {
         localStorage.setItem('project', JSON.stringify(projectList));
     }
 
-    function listProjects() {
 
-        const connectTaskToProject = document.getElementById('todo-project');
-        connectTaskToProject.replaceChildren();
-        for (let i = 0; i < projectList.length; i++) {
-            const title = document.createElement('option');
-            const projectTitle = projectList[i].title;
-            title.textContent = projectTitle;
-            connectTaskToProject.appendChild(title);
-
-        }
-    }
 
     function updateProjects(originalName, newName) {
 
@@ -46,7 +35,6 @@ function projects() {
     }
     return {
         createProjects,
-        listProjects,
         updateProjects,
         removeProjects,
         projectList
